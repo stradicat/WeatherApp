@@ -3,5 +3,13 @@
     <style name="Base.Theme.WeatherApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- app bar color -->
+        <item name="colorPrimary">@color/my_primary_dark</item>
+        <!-- toggle states, FAB, chips -->
+        <item name="colorSecondary">@color/my_secondary_dark</item>
+        <!-- custom illustrations, info messages -->
+        <item name="colorTertiary">@color/my_tertiary_dark</item>
+        <!-- background color -->
+        <item name="android:colorBackground">@color/my_background_dark</item>
     </style>
 </resources>
