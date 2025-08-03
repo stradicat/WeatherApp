@@ -12,9 +12,6 @@
         <item name="android:colorBackground">@color/my_background</item>
     </style>
 
-
-    <style name="Theme.NotasYNavegación" parent="Base.Theme.WeatherApp" />
-
     <color name="my_primary">@color/blue</color>
     <color name="my_primary_dark">@color/violet</color>
     <color name="my_secondary">@color/green</color>
