@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_HEAP_SIZE" value="1000" />
+    <option name="BUILD_PROCESS_ADDITIONAL_VM_OPTIONS" value="-XX:+UseG1GC -XX:+UseStringDeduplication -XX:+UseCompressedOops -XX:G1PeriodicGCInterval=30000 -Xshare:auto -Dfile.encoding=UTF-8 -XX:+TieredCompilation" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" procOnly="true" />
+    </annotationProcessing>
+    <bytecodeTargetLevel target="21" />
+  </component>
+</project>
