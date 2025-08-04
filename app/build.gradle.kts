@@ -25,10 +25,10 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
-            buildConfigField("String", "WEATHER_API_KEY", "\"b3edc70f86c12b85d2fb8a5180cc1285\"")
+            buildConfigField("String", "WEATHER_API_KEY", "\"ec3466367cc90a85d3b85aeecb291a4a\"")
         }
         debug {
-            buildConfigField("String", "WEATHER_API_KEY", "\"b3edc70f86c12b85d2fb8a5180cc1285\"")
+            buildConfigField("String", "WEATHER_API_KEY", "\"ec3466367cc90a85d3b85aeecb291a4a\"")
         }
     }
     buildFeatures {
