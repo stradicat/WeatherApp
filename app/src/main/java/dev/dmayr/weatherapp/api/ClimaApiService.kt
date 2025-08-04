@@ -9,11 +9,17 @@ import retrofit2.http.Query
 interface ClimaApiService {
     @GET("weather")
     suspend fun getClimaPorCiudad(
-        @Query("q") ciudad: String
+        @Query("q") ciudad: String,
+        @Query("appid") apiKey: String,
+        @Query("units") units: String = "metric",
+        @Query("lang") lang: String = "es"
     ): Response<ClimaResponse>
 
     @GET("forecast")
     suspend fun getPronosticoPorCiudad(
-        @Query("q") ciudad: String
+        @Query("q") ciudad: String,
+        @Query("appid") apiKey: String,
+        @Query("units") units: String = "metric",
+        @Query("lang") lang: String = "es"
     ): Response<PronosticoResponse>
 }

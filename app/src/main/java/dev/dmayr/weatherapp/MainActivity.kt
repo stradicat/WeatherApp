@@ -16,9 +16,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import dev.dmayr.weatherapp.api.ClimaApiService
-import dev.dmayr.weatherapp.api.RetrofitClient
 import dev.dmayr.weatherapp.databinding.ActivityMainBinding
+import dev.dmayr.weatherapp.repository.ClimaRepository
 import dev.dmayr.weatherapp.utils.LocationHelper.obtenerUbicacion
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -83,41 +82,32 @@ class MainActivity : AppCompatActivity() {
                 binding.tvTemperatura.text = "--°C"
                 binding.tvDescripcion.text = "Obteniendo datos del clima..."
 
-                val apiService = RetrofitClient.instance.create(ClimaApiService::class.java)
-                val response = apiService.getClimaPorCiudad(ciudad)
+                val climaRepository = ClimaRepository()
+                val climaResponse = climaRepository.obtenerClima(ciudad)
 
-                if (response.isSuccessful) {
-                    response.body()?.let { climaResponse ->
-                        // Actualizar UI con datos obtenidos
-                        binding.tvCiudad.text = "🏙️ ${climaResponse.nombre}"
-                        binding.tvDescripcion.text = "☁️ ${
-                            climaResponse.weather[0].description.replaceFirstChar {
-                                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-                            }
-                        }"
-                        binding.tvTemperatura.text = "${climaResponse.main.temp.toInt()}°C"
-                        ultimaCiudadConsultada = climaResponse.nombre
+                // Actualizar UI con datos obtenidos
+                binding.tvCiudad.text = "🏙️ ${climaResponse.nombre}"
+                binding.tvDescripcion.text = "☁️ ${
+                    climaResponse.weather[0].description.replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    }
+                }"
+                binding.tvTemperatura.text = "${climaResponse.main.temp.toInt()}°C"
+                ultimaCiudadConsultada = climaResponse.nombre
 
-                        Toast.makeText(this@MainActivity, "Clima actualizado", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                } else {
-                    // Handle HTTP error codes
-                    val errorMessage = when (response.code()) {
-                        404 -> "Ciudad no encontrada"
-                        401 -> "Error de autenticación API"
-                        else -> "Error del servidor: ${response.code()}"
-                    }
-                    mostrarErrorUbicacion(errorMessage)
-                }
+                Toast.makeText(this@MainActivity, "Clima actualizado", Toast.LENGTH_SHORT).show()
 
             } catch (e: Exception) {
-                // Manejar errores de red/conexión
-                val errorMessage = when {
-                    e.message?.contains("Unable to resolve host") == true -> "Sin conexión a internet"
-                    else -> "Error al obtener el clima: ${e.message}"
-                }
-                mostrarErrorUbicacion(errorMessage)
+                // Manejar errores
+                binding.tvCiudad.text = "❌ Error"
+                binding.tvTemperatura.text = "--°C"
+                binding.tvDescripcion.text = "No se pudo obtener el clima"
+
+                Toast.makeText(
+                    this@MainActivity,
+                    e.message ?: "Error desconocido",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

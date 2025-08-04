@@ -17,7 +17,10 @@ class ClimaRepository {
         Log.d(TAG, "Obteniendo clima para: $ciudad")
 
         try {
-            val response = api.getClimaPorCiudad(ciudad)
+            val response = api.getClimaPorCiudad(
+                ciudad = ciudad,
+                apiKey = RetrofitClient.apiKey
+            )
 
             if (response.isSuccessful) {
                 Log.d(TAG, "Clima obtenido exitosamente para: $ciudad")
@@ -42,7 +45,10 @@ class ClimaRepository {
         Log.d(TAG, "Obteniendo pronóstico para: $ciudad")
 
         try {
-            val response = api.getPronosticoPorCiudad(ciudad)
+            val response = api.getPronosticoPorCiudad(
+                ciudad = ciudad,
+                apiKey = RetrofitClient.apiKey
+            )
 
             if (response.isSuccessful) {
                 Log.d(TAG, "Pronóstico obtenido exitosamente para: $ciudad")

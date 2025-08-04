@@ -1,7 +1,6 @@
 package dev.dmayr.weatherapp.api
 
 import dev.dmayr.weatherapp.BuildConfig
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,26 +13,8 @@ object RetrofitClient {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    private val apiKeyInterceptor = Interceptor { chain ->
-        val originalRequest = chain.request()
-        val originalUrl = originalRequest.url
-
-        val newUrl = originalUrl.newBuilder()
-            .addQueryParameter("appid", BuildConfig.WEATHER_API_KEY)
-            .addQueryParameter("units", "metric")
-            .addQueryParameter("lang", "es")
-            .build()
-
-        val newRequest = originalRequest.newBuilder()
-            .url(newUrl)
-            .build()
-
-        chain.proceed(newRequest)
-    }
-
     private val okHttpClient by lazy {
         OkHttpClient.Builder()
-            .addInterceptor(apiKeyInterceptor)
             .addInterceptor(loggingInterceptor)
             .build()
     }
@@ -45,4 +26,8 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    // Expose the API key from BuildConfig
+    val apiKey: String
+        get() = BuildConfig.WEATHER_API_KEY
 }
