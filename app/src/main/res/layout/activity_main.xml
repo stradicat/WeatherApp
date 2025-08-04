@@ -2,18 +2,142 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/layoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/base3"
+    android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Título de la app -->
+    <androidx.emoji2.widget.EmojiTextView
+        android:id="@+id/tvElTiempo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/base3"
+        android:fontFamily="@font/lexend_bold"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="🌤 El Tiempo"
+        android:textColor="@color/base00"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Campo de entrada para ciudad -->
+    <EditText
+        android:id="@+id/etIngresarCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_margin="16dp"
+        android:autofillHints="postalAddress"
+        android:background="@color/base2"
+        android:elevation="4dp"
+        android:hint="Buscar Ciudad"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:padding="16dp"
+        android:queryHint="Buscar ciudad"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/tvElTiempo"
+        app:layout_constraintStart_toStartOf="@id/tvElTiempo"
+        app:layout_constraintTop_toBottomOf="@+id/tvElTiempo" />
+
+    <androidx.emoji2.widget.EmojiButton
+        android:id="@+id/btnBuscar"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/green"
+        android:text="🔍 Buscar\n    Clima"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnUbicacion"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etIngresarCiudad" />
+
+    <androidx.emoji2.widget.EmojiButton
+        android:id="@+id/btnUbicacion"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/yellow"
+        android:text="📍 Ubicación\n    Actual"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnBuscar"
+        app:layout_constraintTop_toBottomOf="@+id/etIngresarCiudad" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardElevation="8dp"
+        app:contentPadding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnUbicacion"
+        app:layout_constraintStart_toStartOf="@+id/btnBuscar"
+        app:layout_constraintTop_toBottomOf="@id/btnUbicacion">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.emoji2.widget.EmojiTextView
+                android:id="@+id/tvCiudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="🏙️ Selecciona una ciudad"
+                android:textColor="#2C3E50"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.emoji2.widget.EmojiTextView
+                android:id="@+id/tvTemperatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:text="🌡️ --°C"
+                android:textColor="#E74C3C"
+                android:textSize="54sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/tvCiudad" />
+
+            <androidx.emoji2.widget.EmojiTextView
+                android:id="@+id/tvDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="☁️ Busca una ciudad para ver el clima"
+                android:textColor="#7F8C8D"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintTop_toBottomOf="@+id/tvTemperatura" />
+
+            <androidx.emoji2.widget.EmojiTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="👆 Toca Aqui para ver el pronostico de 5 dias"
+                android:textColor="#7F8C8D"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescripcion" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

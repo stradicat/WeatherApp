@@ -73,6 +73,10 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
+    // Display seguro de Emojis como `drawable`
+    implementation(libs.androidx.emoji2)
+    implementation(libs.androidx.emoji2.views)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
