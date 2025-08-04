@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="24dp"
-        android:background="@color/base3"
         android:fontFamily="@font/lexend_bold"
         android:gravity="center"
         android:padding="16dp"
