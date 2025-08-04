@@ -25,10 +25,15 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
+            buildConfigField("String", "WEATHER_API_KEY", "\"afc5548d84ae2ca875d7ac35945cd7c3\"")
+        }
+        debug {
+            buildConfigField("String", "WEATHER_API_KEY", "\"afc5548d84ae2ca875d7ac35945cd7c3\"")
         }
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
@@ -53,6 +58,7 @@ dependencies {
     // Retrofit para API calls
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
