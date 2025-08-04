@@ -32,20 +32,23 @@
     <EditText
         android:id="@+id/etIngresarCiudad"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="48dp"
         android:layout_margin="16dp"
         android:autofillHints="postalAddress"
         android:background="@color/base2"
+        android:drawableEnd="@drawable/baseline_content_paste_search_24"
         android:elevation="4dp"
         android:hint="Buscar Ciudad"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:padding="16dp"
         android:queryHint="Buscar ciudad"
+        android:textColor="@color/base00"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/tvElTiempo"
         app:layout_constraintStart_toStartOf="@id/tvElTiempo"
-        app:layout_constraintTop_toBottomOf="@+id/tvElTiempo" />
+        app:layout_constraintTop_toBottomOf="@+id/tvElTiempo"
+        tools:ignore="HardcodedText" />
 
     <androidx.emoji2.widget.EmojiButton
         android:id="@+id/btnBuscar"
@@ -60,7 +63,8 @@
         app:layout_constraintEnd_toStartOf="@+id/btnUbicacion"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etIngresarCiudad" />
+        app:layout_constraintTop_toBottomOf="@+id/etIngresarCiudad"
+        tools:ignore="HardcodedText" />
 
     <androidx.emoji2.widget.EmojiButton
         android:id="@+id/btnUbicacion"
@@ -75,7 +79,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnBuscar"
-        app:layout_constraintTop_toBottomOf="@+id/etIngresarCiudad" />
+        app:layout_constraintTop_toBottomOf="@+id/etIngresarCiudad"
+        tools:ignore="HardcodedText" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -102,7 +107,8 @@
                 android:textColor="#2C3E50"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <androidx.emoji2.widget.EmojiTextView
                 android:id="@+id/tvTemperatura"
@@ -114,7 +120,8 @@
                 android:textColor="#E74C3C"
                 android:textSize="54sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/tvCiudad" />
+                app:layout_constraintTop_toBottomOf="@+id/tvCiudad"
+                tools:ignore="HardcodedText" />
 
             <androidx.emoji2.widget.EmojiTextView
                 android:id="@+id/tvDescripcion"
@@ -125,7 +132,8 @@
                 android:textColor="#7F8C8D"
                 android:textSize="18sp"
                 android:textStyle="italic"
-                app:layout_constraintTop_toBottomOf="@+id/tvTemperatura" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTemperatura"
+                tools:ignore="HardcodedText" />
 
             <androidx.emoji2.widget.EmojiTextView
                 android:layout_width="match_parent"
@@ -135,7 +143,8 @@
                 android:textColor="#7F8C8D"
                 android:textSize="18sp"
                 android:textStyle="italic"
-                app:layout_constraintTop_toBottomOf="@+id/tvDescripcion" />
+                app:layout_constraintTop_toBottomOf="@+id/tvDescripcion"
+                tools:ignore="HardcodedText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
