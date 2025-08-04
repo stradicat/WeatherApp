@@ -2,12 +2,14 @@ package dev.dmayr.weatherapp
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +46,13 @@ class MainActivity : AppCompatActivity() {
         setupClickListeners()
     }
 
+    fun Context.hideKeyboard() {
+        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        currentFocus?.let { view ->
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
     private fun setupClickListeners() {
         binding.btnBuscar.setOnClickListener {
             val ciudad = binding.etIngresarCiudad.text.toString().trim()
@@ -56,13 +65,14 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+            hideKeyboard()
         }
 
         binding.btnUbicacion.setOnClickListener {
             solicitarPermisosUbicacion()
+            hideKeyboard()
         }
 
-        // Click para abrir pronóstico
         binding.tvCiudad.setOnClickListener {
             if (ultimaCiudadConsultada.isNotEmpty()) {
                 abrirPronostico(ultimaCiudadConsultada)
@@ -77,7 +87,6 @@ class MainActivity : AppCompatActivity() {
     private fun obtenerClima(ciudad: String) {
         lifecycleScope.launch {
             try {
-                // Mostrar loading
                 binding.tvCiudad.text = "🔄 Cargando..."
                 binding.tvTemperatura.text = "--°C"
                 binding.tvDescripcion.text = "Obteniendo datos del clima..."
@@ -85,7 +94,6 @@ class MainActivity : AppCompatActivity() {
                 val climaRepository = ClimaRepository()
                 val climaResponse = climaRepository.obtenerClima(ciudad)
 
-                // Actualizar UI con datos obtenidos
                 binding.tvCiudad.text = "🏙️ ${climaResponse.nombre}"
                 binding.tvDescripcion.text = "☁️ ${
                     climaResponse.weather[0].description.replaceFirstChar {
@@ -98,7 +106,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Clima actualizado", Toast.LENGTH_SHORT).show()
 
             } catch (e: Exception) {
-                // Manejar errores
                 binding.tvCiudad.text = "❌ Error"
                 binding.tvTemperatura.text = "--°C"
                 binding.tvDescripcion.text = "No se pudo obtener el clima"
